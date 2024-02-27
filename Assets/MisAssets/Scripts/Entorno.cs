@@ -15,6 +15,7 @@ public class Entorno : MonoBehaviour
     #region 1) Definicion de Variables
 
     Vector3 posInicial;
+    [SerializeField] private float velocidad;
 
 #endregion
 // -----------------------------------------------------------------
@@ -33,7 +34,7 @@ void Awake (){
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > -100f) transform.Translate(Vector3.left * Time.deltaTime);
+        if (transform.position.x > -100f) transform.Translate(Vector3.left * Time.deltaTime * velocidad);
         else transform.position += Vector3.right * transform.position.x;
         
     }

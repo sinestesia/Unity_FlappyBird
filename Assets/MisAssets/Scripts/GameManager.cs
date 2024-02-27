@@ -66,14 +66,17 @@ void Awake (){
         {
             // -----------------------------------------------------------------
             case EstadosJuego.Ninguno:
-
                 break;
             // -----------------------------------------------------------------
             case EstadosJuego.MenuInicio:
 
                 Time.timeScale = 1f;
 
-                if (estadoPrevio == EstadosJuego.JuegoFinalizado) SceneManager.LoadScene(0);
+                if (estadoPrevio == EstadosJuego.JuegoFinalizado)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                
 
                 break;
             // -----------------------------------------------------------------
@@ -98,12 +101,14 @@ void Awake (){
                 if (PlayerDataManager.instancia.RecordSuperado())
                 {
                     Debug.Log("Enhorabuena, record superado");
+                    PlayerDataManager.instancia.datosJugador.record = PlayerDataManager.instancia.datosJugador.puntuacion;
+                    HUDManager.instancia.ActualizarPuntuacionMaxima();
                 }
                 else
                 {
                     Debug.Log("Record no superado, sigue intentandolo");
                 }
-
+                PlayerDataManager.instancia.datosJugador.puntuacion = 0;
                 GameplayPanelesManager.instancia.VisibilidadPanel(0, false);
                 GameplayPanelesManager.instancia.VisibilidadPanel(1, true);
 

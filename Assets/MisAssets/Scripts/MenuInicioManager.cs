@@ -23,17 +23,6 @@ public class MenuInicioManager : MonoBehaviour
         instancia = this;
 	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 #endregion
 // -----------------------------------------------------------------
 #region 3) Metodos Originales
@@ -41,11 +30,13 @@ public class MenuInicioManager : MonoBehaviour
     public void Jugar()
     {
         GameManager.instancia.EstablecerEstado(EstadosJuego.Jugando);
+        SoundManager.instancia.SonidoClic();
     }
 
     public void Salir()
     {
         Application.Quit();
+        SoundManager.instancia.SonidoClic();
     }
 
 #endregion

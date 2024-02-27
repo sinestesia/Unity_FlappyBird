@@ -53,16 +53,19 @@ void Awake (){
     public void Boton_Reanudar()
     {
         GameManager.instancia.EstablecerEstado(EstadosJuego.Jugando);
+        SoundManager.instancia.SonidoClic();
     }
 
     public void Boton_ReJugar()
     {
         GameManager.instancia.EstablecerEstado(EstadosJuego.Jugando);
+        SoundManager.instancia.SonidoClic();
     }
 
     public void Boton_VolverMenuInicio()
     {
         GameManager.instancia.EstablecerEstado(EstadosJuego.MenuInicio);
+        SoundManager.instancia.SonidoClic();
     }
 #endregion
 // -----------------------------------------------------------------

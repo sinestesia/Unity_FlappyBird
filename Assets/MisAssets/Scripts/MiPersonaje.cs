@@ -27,16 +27,13 @@ public class MiPersonaje : MonoBehaviour
         rb = GetComponent<Rigidbody2D> ();
 	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown (0)) Saltar();
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) { 
+            Saltar();
+            SoundManager.instancia.SonidoVolar();
+        } 
 
         Rotacion();
     }
@@ -46,6 +43,7 @@ public class MiPersonaje : MonoBehaviour
         if (collision.collider.CompareTag("Obstaculos") && GameManager.instancia.estadoActual != EstadosJuego.JuegoFinalizado)
         {
             GameManager.instancia.EstablecerEstado(EstadosJuego.JuegoFinalizado);
+            SoundManager.instancia.SonidoMorir();
         }
     }
 
@@ -55,6 +53,7 @@ public class MiPersonaje : MonoBehaviour
         {
             Debug.Log("Puntua");
             PlayerDataManager.instancia.AgregarPuntos(5);
+            SoundManager.instancia.SonidoTuberiaSuperada();
         }
     }
     #endregion
@@ -64,7 +63,7 @@ public class MiPersonaje : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
 
-        float _fuerzaSalto = Mathf.Sqrt(alturaMax * -2 * (Physics2D.gravity.y * rb.gravityScale));
+        float _fuerzaSalto = Mathf.Sqrt(alturaMax * -3 * (Physics2D.gravity.y * rb.gravityScale));
         rb.AddForce(Vector2.up * _fuerzaSalto, ForceMode2D.Impulse);
 
     }
